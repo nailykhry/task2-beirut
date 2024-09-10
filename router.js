@@ -9,6 +9,7 @@ router.get("/", (req, res) => {
     "Sum of Cubes": "GET api/sum_of_cubes?n",
     "Square root": "GET api/square_root?n",
     Factorial: "GET api/factorial?n",
+    Exponentiation: "GET api/exponentiation?base=x&exponent=y",
   });
 });
 
@@ -74,6 +75,23 @@ router.get("/factorial", (req, res) => {
     res.status(400).json({
       error:
         "Invalid input. Please provide a non-negative integer as query. ex: http://localhost:3000/factorial?n=5",
+    });
+  }
+});
+
+// AUTHOR: Haniyatul Halwa-sama
+// Eksponen
+router.get("/exponentiation", (req, res) => {
+  const base = parseFloat(req.query.base);
+  const exponent = parseFloat(req.query.exponent);
+
+  if (!isNaN(base) && !isNaN(exponent)) {
+    const result = calcMethod.exponent(base, exponent);
+    res.json({ base: base, exponent: exponent, result: result });
+  } else {
+    res.status(400).json({
+      error:
+        "Invalid input. Please provide valid numbers for base and exponent. Example: http://localhost:3000/exponentiation?base=2&exponent=3",
     });
   }
 });

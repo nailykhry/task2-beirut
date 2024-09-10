@@ -15,4 +15,7 @@ module.exports = {
     }
     return n * faktorial(n - 1);
   },
+  exponent: (base, exponent) => {
+    return Math.pow(base, exponent);
+  },
 };
