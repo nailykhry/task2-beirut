@@ -11,6 +11,7 @@ router.get("/", (req, res) => {
     Factorial: "GET /api/factorial?n",
     Exponentiation: "GET /api/exponentiation?base=x&exponent=y",
     Ceil: "GET /api/ceil?number",
+    Fibonacci: "GET /api/fib?n",
   });
 });
 
@@ -110,6 +111,25 @@ router.get("/ceil", (req, res) => {
 
   const result = calcMethod.ceil(number);
   res.json({ original: number, ceiled: result });
+});
+
+/*
+  AUTHOR: CHRISTIN APRILLIA
+  returns the first n fibonacci numbers
+  example: 0 1 1 2 3 5 8
+  */
+router.get("/fib", (req, res) => {
+  const n = parseInt(req.query.n);
+  if (isNaN(n) || n <= 0) {
+    return res
+      .status(400)
+      .send(
+        "Invalid input. Please provide a positive integer. ex: http://localhost:3000/fib?n=9"
+      );
+  }
+
+  const fibNumbers = calcMethod.fibonacci(n);
+  res.json({ n, fibonacci: fibNumbers });
 });
 
 // janlupaa export!!
