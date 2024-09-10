@@ -6,10 +6,11 @@ router.get("/", (req, res) => {
   res.json({
     message:
       "Selamat datang di server kelompok 3 - Beirut. Berikut list route yang bisa digunakan:",
-    "Sum of Cubes": "GET api/sum_of_cubes?n",
-    "Square root": "GET api/square_root?n",
-    Factorial: "GET api/factorial?n",
-    Exponentiation: "GET api/exponentiation?base=x&exponent=y",
+    "Sum of Cubes": "GET /api/sum_of_cubes?n",
+    "Square root": "GET /api/square_root?n",
+    Factorial: "GET /api/factorial?n",
+    Exponentiation: "GET /api/exponentiation?base=x&exponent=y",
+    Ceil: "GET /api/ceil?number",
   });
 });
 
@@ -94,6 +95,21 @@ router.get("/exponentiation", (req, res) => {
         "Invalid input. Please provide valid numbers for base and exponent. Example: http://localhost:3000/exponentiation?base=2&exponent=3",
     });
   }
+});
+
+// AUTHOR: Ahmad Uci Safitra
+// Ceil
+router.get("/ceil", (req, res) => {
+  const { number } = req.query;
+
+  // if (typeof number !== "number") {
+  //   return res
+  //     .status(400)
+  //     .json({ error: "Invalid input. Must provide a number." });
+  // }
+
+  const result = calcMethod.ceil(number);
+  res.json({ original: number, ceiled: result });
 });
 
 // janlupaa export!!

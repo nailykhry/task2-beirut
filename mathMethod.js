@@ -18,4 +18,7 @@ module.exports = {
   exponent: (base, exponent) => {
     return Math.pow(base, exponent);
   },
+  ceil: (n) => {
+    return Math.ceil(n);
+  },
 };
