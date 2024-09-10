@@ -12,6 +12,7 @@ router.get("/", (req, res) => {
     Exponentiation: "GET /api/exponentiation?base=x&exponent=y",
     Ceil: "GET /api/ceil?number",
     Fibonacci: "GET /api/fib?n",
+    Modulus: "GET /api/mod?angka1=n&angka2=n`",
   });
 });
 
@@ -127,9 +128,29 @@ router.get("/fib", (req, res) => {
         "Invalid input. Please provide a positive integer. ex: http://localhost:3000/fib?n=9"
       );
   }
-
   const fibNumbers = calcMethod.fibonacci(n);
   res.json({ n, fibonacci: fibNumbers });
+});
+
+/*
+  AUTHOR: VIVI AMELIA
+  returns the result of a % b
+  example: a % b
+  */
+router.get("/mod", (req, res) => {
+  const angka1 = parseInt(req.query.angka1);
+  const angka2 = parseInt(req.query.angka2);
+
+  if (isNaN(angka1) || isNaN(angka2) || angka2 === 0) {
+    return res
+      .status(400)
+      .send(
+        "Invalid input. Please provide two integers and ensure angka2 is not zero."
+      );
+  }
+
+  const result = angka1 % angka2;
+  res.json({ angka1, angka2, result });
 });
 
 // janlupaa export!!
